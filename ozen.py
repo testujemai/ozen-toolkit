@@ -14,13 +14,13 @@ if __name__ == '__main__':
     parser.add_argument('file_path', help='Path to the file or directory to convert')
     parser.add_argument('-output_path', help='Path to the output directory', default=os.getcwd()+os.sep+'output')
     parser.add_argument('-project_name', help='project_name', type=str, default='none')
-    parser.add_argument('-whisper_model', help='Which whisper model to use, HF repo address', default='openai/whisper-large-v2')
+    parser.add_argument('-whisper_model', help='Which whisper model to use, HF repo address', default='openai/whisper-large-v3')
     parser.add_argument('-device', help='Which device to use, cpu or cuda', default='cuda')
     parser.add_argument('-mode', help='Automatic diarization and segmentation', default='segment and transcribe', type=str, choices=['auto', 'segment and transcribe', 'diarize', 'transcribe'])
     parser.add_argument('-diaization_model', help='Which diarization model to use, HF repo address', default='pyannote/speaker-diarization')
     parser.add_argument('-segmentation_model', help='Which segmentation model to use, HF repo address', default='pyannote/segmentation')
     parser.add_argument('-seg_onset', help='onset activation threshold, influences the segment detection', default=0.6, type=float)
-    parser.add_argument('-seg_offset', help='offset activation threshold, influences the segment detection', default=0.4, type=float)
+    parser.add_argument('-seg_offset', help='offset activation threshold, influences the segment detection', default=0.9, type=float)
     parser.add_argument('-seg_min_duration', help='minimum duration of a segment, remove speech regions shorter than that many seconds.', default=2.0, type=float)
     parser.add_argument('-seg_min_duration_off', help='fill non-speech regions shorter than that many seconds.', default=0.0, type=float)
     parser.add_argument('-hf_token', help='Huggingface token', default='')
@@ -46,13 +46,13 @@ if __name__ == '__main__':
         config = configparser.ConfigParser()
         config['DEFAULT'] = {'hf_token': ''}
         config['DEFAULT']['hf_token'] = ''
-        config['DEFAULT']['whisper_model'] = 'openai/whisper-large-v2'
+        config['DEFAULT']['whisper_model'] = 'openai/whisper-large-v3'
         config['DEFAULT']['device'] = 'cuda'
         config['DEFAULT']['diaization_model'] = 'pyannote/speaker-diarization'
         config['DEFAULT']['segmentation_model'] = 'pyannote/segmentation'
         config['DEFAULT']['valid_ratio'] = str(0.2)
         config['DEFAULT']['seg_onset'] = str(0.6)
-        config['DEFAULT']['seg_offset'] = str(0.4)
+        config['DEFAULT']['seg_offset'] = str(0.9)
         config['DEFAULT']['seg_min_duration'] = str(2.0)
         config['DEFAULT']['seg_min_duration_off'] = str(0.0)
         with open('config.ini', 'w') as configfile:
