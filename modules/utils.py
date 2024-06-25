@@ -165,7 +165,7 @@ def init_transcribe_pipeline(model_name,device=0):
     pipe = pipeline(
         "automatic-speech-recognition",
         model=model_name,
-        chunk_length_s=30,
+        chunk_length_s=8,
         device=device,
     )
     
