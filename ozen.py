@@ -108,6 +108,8 @@ if __name__ == '__main__':
                 print(groups)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 wavs = segment_file_by_diargroup(file_path, groups)
+                print("--------wavs----------")
+                print(wavs)
                 del pipe
                 print(colorama.Fore.GREEN + 'Loading Transcribing Model...' + colorama.Fore.RESET)
                 transcribe_pipe = init_transcribe_pipeline(args.whisper_model, args.device)
