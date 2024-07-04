@@ -104,12 +104,8 @@ if __name__ == '__main__':
                 print(colorama.Fore.GREEN + 'Grouping Diarization...' + colorama.Fore.RESET)
                 dir_groups = group_diarization(diarization)
                 groups = group_diarization(diarization)
-                print("--------groups----------")
-                print(groups)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 wavs = segment_file_by_diargroup(file_path, groups)
-                print("--------wavs----------")
-                print(wavs)
                 del pipe
                 print(colorama.Fore.GREEN + 'Loading Transcribing Model...' + colorama.Fore.RESET)
                 transcribe_pipe = init_transcribe_pipeline(args.whisper_model, args.device)
@@ -127,7 +123,11 @@ if __name__ == '__main__':
                 #milisecs = millisec(segments)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 groups = group_segmentation(segments)
+                print("--------groups----------")
+                print(groups)
                 wavs = segment_file_by_diargroup(file_path,wavs_path, groups)
+                print("--------wavs----------")
+                print(wavs)
                 del pipe
                 
                 print(colorama.Fore.GREEN + 'Loading Transcribing Model...' + colorama.Fore.RESET)
