@@ -157,21 +157,11 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         start = millisec(start) #- spacermilli
         end = millisec(end)  #- spacermilli
         #print(start, end)
-        gidx += 1
-        file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
-        print("-------------------SEGMENT TEST-------------------")
-        print(file)
-        print(audio[start:end])
-        print("START:", start)
-        print("END:", end)
-        rozdiel = end - start
-        print("END-START:", rozdiel)
-        if rozdiel >= 3000 and rozdiel <= 10000:
-            print("DOBRE")
-        else:
-            print("ZLE")
-        
-        
+        difference = end - start
+        #audio 3-10 sec long
+        if difference >= 3000 and difference <= 10000:
+            gidx += 1
+            file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
     pipe = pipeline(
