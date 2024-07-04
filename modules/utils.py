@@ -145,8 +145,12 @@ def group_segmentation(diarization):
         else:
             lastend = end
     if g:
+        print("---------G---------")
+        print(g)
         groups.append(g)
     #print(*groups, sep='\n')
+    print("---------GROUPS---------")
+    print(groups)
     return groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
     audio = AudioSegment.from_wav(file_path)
@@ -157,10 +161,10 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         start = millisec(start) #- spacermilli
         end = millisec(end)  #- spacermilli
         #print(start, end)
-        difference = end - start
+        gidx += 1
         #audio 3-10 sec long
+        difference = end - start
         if difference >= 3000 and difference <= 10000:
-            gidx += 1
             file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
