@@ -104,6 +104,8 @@ if __name__ == '__main__':
                 print(colorama.Fore.GREEN + 'Grouping Diarization...' + colorama.Fore.RESET)
                 dir_groups = group_diarization(diarization)
                 groups = group_diarization(diarization)
+                print("--------groups----------")
+                print(groups)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 wavs = segment_file_by_diargroup(file_path, groups)
                 del pipe
