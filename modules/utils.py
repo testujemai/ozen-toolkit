@@ -146,6 +146,17 @@ def group_segmentation(diarization):
             lastend = end
     if g:
         groups.append(g)
+    for g in groups:
+        start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
+        end = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[-1])[1]
+        start = millisec(start) #- spacermilli
+        end = millisec(end)  #- spacermilli
+        #print(start, end)
+        difference = end - start
+        if difference >= 3000 and difference <= 10000:
+            continue
+        else:
+            groups.remove(g)
     #print(*groups, sep='\n')
     return groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
