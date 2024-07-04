@@ -186,6 +186,6 @@ def transcribe_audio(audio_file,pipe):
 
     # Process the audio file
     #prediction = pipe(audio, return_timestamps=True)["chunks"]
-    prediction = pipe(audio_file)["text"]
+    prediction = pipe(audio_file, generate_kwargs={"language": "slovak"})["text"]
     #print(prediction)
     return prediction
