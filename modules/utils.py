@@ -145,12 +145,12 @@ def group_segmentation(diarization):
         else:
             lastend = end
     if g:
-        print("---------G---------")
-        print(g)
         groups.append(g)
     #print(*groups, sep='\n')
     print("---------GROUPS---------")
     print(groups)
+    print(len(groups))
+    print(type(groups))
     return groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
     audio = AudioSegment.from_wav(file_path)
