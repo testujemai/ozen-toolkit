@@ -120,6 +120,8 @@ if __name__ == '__main__':
                 print(colorama.Fore.GREEN + 'Loading Segment Model...' + colorama.Fore.RESET)
                 pipe = load_pyannote_audio_model(args.segmentation_model, args.hf_token)
                 segments = segment_audio_file(file_path, pipe, args.seg_onset, args.seg_offset, args.seg_min_duration, args.seg_min_duration_off)
+                print("--------segments----------")
+                print(segments)
                 #milisecs = millisec(segments)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 groups = group_segmentation(segments)
