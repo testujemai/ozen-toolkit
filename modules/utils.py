@@ -121,6 +121,19 @@ def group_diarization(diarization):
     if g:
         groups.append(g)
     #print(*groups, sep='\n')
+"""
+    for g in groups:
+        start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
+        end = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[-1])[1]
+        start = millisec(start) #- spacermilli
+        end = millisec(end)  #- spacermilli
+        #audio 3-10 sec long
+        difference = end - start
+        if difference >= 3000 and difference <= 10000:
+            continue
+        else:
+            groups.remove(g)
+    """
     return groups
 def group_segmentation(diarization):
     
@@ -147,10 +160,19 @@ def group_segmentation(diarization):
     if g:
         groups.append(g)
     #print(*groups, sep='\n')
-    print("---------GROUPS---------")
-    print(groups)
-    print(len(groups))
-    print(type(groups))
+"""
+    for g in groups:
+        start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
+        end = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[-1])[1]
+        start = millisec(start) #- spacermilli
+        end = millisec(end)  #- spacermilli
+        #audio 3-10 sec long
+        difference = end - start
+        if difference >= 3000 and difference <= 10000:
+            continue
+        else:
+            groups.remove(g)
+    """
     return groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
     audio = AudioSegment.from_wav(file_path)
@@ -162,10 +184,7 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         end = millisec(end)  #- spacermilli
         #print(start, end)
         gidx += 1
-        #audio 3-10 sec long
-        difference = end - start
-        if difference >= 3000 and difference <= 10000:
-            file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
+        file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
     pipe = pipeline(
