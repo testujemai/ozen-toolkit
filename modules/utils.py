@@ -121,19 +121,6 @@ def group_diarization(diarization):
     if g:
         groups.append(g)
     #print(*groups, sep='\n')
-"""
-    for g in groups:
-        start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
-        end = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[-1])[1]
-        start = millisec(start) #- spacermilli
-        end = millisec(end)  #- spacermilli
-        #audio 3-10 sec long
-        difference = end - start
-        if difference >= 3000 and difference <= 10000:
-            continue
-        else:
-            groups.remove(g)
-    """
     return groups
 def group_segmentation(diarization):
     
@@ -160,19 +147,6 @@ def group_segmentation(diarization):
     if g:
         groups.append(g)
     #print(*groups, sep='\n')
-"""
-    for g in groups:
-        start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
-        end = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[-1])[1]
-        start = millisec(start) #- spacermilli
-        end = millisec(end)  #- spacermilli
-        #audio 3-10 sec long
-        difference = end - start
-        if difference >= 3000 and difference <= 10000:
-            continue
-        else:
-            groups.remove(g)
-    """
     return groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
     audio = AudioSegment.from_wav(file_path)
