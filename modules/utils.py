@@ -162,8 +162,15 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         print("-------------------SEGMENT TEST-------------------")
         print(file)
         print(audio[start:end])
-        print("START:", end)
+        print("START:", start)
         print("END:", end)
+        rozdiel = end - start
+        print("END-START:", rozdiel)
+        if rozdiel >= 3000 and rozdiel <= 10000:
+            print("DOBRE")
+        else:
+            print("ZLE")
+        
         
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
