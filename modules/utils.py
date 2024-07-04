@@ -159,7 +159,8 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         #print(start, end)
         gidx += 1
         file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
-        #print(file)
+        print("SEGMENT TEST")
+        print(file)
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
     pipe = pipeline(
