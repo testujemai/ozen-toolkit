@@ -124,7 +124,7 @@ if __name__ == '__main__':
                 #milisecs = millisec(segments)
                 print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                 groups = group_segmentation(segments)
-                wavs = segment_file_by_diargroup(file_path,wavs_path, groups)
+                wavs = segment_file_by_diargroup(file_path,wavs_path, groups, base_name)
                 del pipe
 
                 print(colorama.Fore.GREEN + 'Loading Transcribing Model...' + colorama.Fore.RESET)
@@ -195,7 +195,7 @@ if __name__ == '__main__':
                     #milisecs = millisec(segments)
                     print(colorama.Fore.GREEN + 'Segmenting...' + colorama.Fore.RESET)
                     groups = group_segmentation(segments)
-                    wavs = segment_file_by_diargroup(file_path,wavs_path, groups, gidx)
+                    wavs = segment_file_by_diargroup(file_path,wavs_path, groups, base_name, gidx)
                     del pipe
 
                     transcribe_pipe = init_transcribe_pipeline(args.whisper_model, 0 if args.device == 'cuda' else -1)
