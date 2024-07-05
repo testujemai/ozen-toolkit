@@ -16,7 +16,14 @@ if __name__ == '__main__':
     parser.add_argument('-project_name', help='project_name', type=str, default='none')
     parser.add_argument('-whisper_model', help='Which whisper model to use, HF repo address', default='openai/whisper-large-v3')
     parser.add_argument('-device', help='Which device to use, cpu or cuda', default='cuda')
-	@@ -27,210 +27,87 @@
+    parser.add_argument('-mode', help='Automatic diarization and segmentation', default='segment and transcribe', type=str, choices=['auto', 'segment and transcribe', 'diarize', 'transcribe'])
+    parser.add_argument('-diaization_model', help='Which diarization model to use, HF repo address', default='pyannote/speaker-diarization')
+    parser.add_argument('-segmentation_model', help='Which segmentation model to use, HF repo address', default='pyannote/segmentation')
+    parser.add_argument('-seg_onset', help='onset activation threshold, influences the segment detection', default=0.6, type=float)
+    parser.add_argument('-seg_offset', help='offset activation threshold, influences the segment detection', default=0.9, type=float)
+    parser.add_argument('-seg_min_duration', help='minimum duration of a segment, remove speech regions shorter than that many seconds.', default=2.0, type=float)
+    parser.add_argument('-seg_min_duration_off', help='fill non-speech regions shorter than that many seconds.', default=0.0, type=float)
+    parser.add_argument('-hf_token', default='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', help='Huggingface token', default='')
     parser.add_argument('-valid_ratio', help='Ratio of validation data', default=0.2, type=float)
     parser.add_argument('-ignore-cofnig', help='Ignore the config, specifiy your own setting sin CLI', action='store_true')
     args = parser.parse_args()
@@ -38,7 +45,7 @@ if __name__ == '__main__':
         #create config.ini
         config = configparser.ConfigParser()
         config['DEFAULT'] = {'hf_token': ''}
-        config['DEFAULT']['hf_token'] = ''
+        config['DEFAULT']['hf_token'] = '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'
         config['DEFAULT']['whisper_model'] = 'openai/whisper-large-v3'
         config['DEFAULT']['device'] = 'cuda'
         config['DEFAULT']['diaization_model'] = 'pyannote/speaker-diarization'
