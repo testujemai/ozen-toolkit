@@ -158,7 +158,7 @@ def group_segmentation(diarization):
         if 3000 <= difference <= 10000:
             filtered_groups.append(g)
     return filtered_groups
-def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
+def segment_file_by_diargroup(file_path,output_path, groups, original_filename, gidx=-1):
     audio = AudioSegment.from_wav(file_path)
     base_name = os.path.splitext(original_filename)[0]
     gidx = gidx
