@@ -78,8 +78,7 @@ if __name__ == '__main__':
         parser.print_help()
         exit()
     file_path = args.file_path
-    original_file_path = args.file_path
-    base_name = os.path.splitext(os.path.basename(original_file_path))[0]
+    base_name = os.path.splitext(os.path.basename(file_path))[0]
     timestamp = generate_timestamp()
     if args.project_name == 'none':
         args.project_name = os.path.basename(os.path.normpath(file_path))
