@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser.add_argument('-seg_offset', help='offset activation threshold, influences the segment detection', default=0.9, type=float)
     parser.add_argument('-seg_min_duration', help='minimum duration of a segment, remove speech regions shorter than that many seconds.', default=2.0, type=float)
     parser.add_argument('-seg_min_duration_off', help='fill non-speech regions shorter than that many seconds.', default=0.0, type=float)
-    parser.add_argument('-hf_token', default='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', help='Huggingface token', default='')
+    parser.add_argument('-hf_token', help='Huggingface token', default='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')
     parser.add_argument('-valid_ratio', help='Ratio of validation data', default=0.2, type=float)
     parser.add_argument('-ignore-cofnig', help='Ignore the config, specifiy your own setting sin CLI', action='store_true')
     args = parser.parse_args()
