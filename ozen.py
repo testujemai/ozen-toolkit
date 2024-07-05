@@ -6,6 +6,7 @@ import sys
 import colorama
 from tqdm import tqdm
 colorama.init(strip=not sys.stdout.isatty())
+from modules.utils import *
 from termcolor import cprint
 from pyfiglet import figlet_format
 
