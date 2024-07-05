@@ -160,6 +160,7 @@ def group_segmentation(diarization):
     return filtered_groups
 def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
     audio = AudioSegment.from_wav(file_path)
+    base_name = os.path.splitext(original_filename)[0]
     gidx = gidx
     for g in groups:
         start = re.findall('[0-9]+:[0-9]+:[0-9]+\.[0-9]+', string=g[0])[0]
@@ -168,7 +169,7 @@ def segment_file_by_diargroup(file_path,output_path, groups,gidx=-1):
         end = millisec(end)  #- spacermilli
         #print(start, end)
         gidx += 1
-        file = audio[start:end].export(os.path.join(output_path,str(gidx) + '.wav'), format='wav')
+        file = audio[start:end].export(os.path.join(output_path, f"{base_name}-{gidx}.wav"), format='wav')
     return gidx
 def init_transcribe_pipeline(model_name,device=0):
     pipe = pipeline(
